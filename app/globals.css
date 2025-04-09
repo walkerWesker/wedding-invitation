@@ -1,0 +1,622 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: white;
+  --foreground: #3d3d3d;
+  --accent: #d4b08c;
+  --secondary: #8d7b68;
+  --tertiary: #f5efe7;
+  --card: #faf7f2;
+  --gold: #d4af37;
+  --rose: #e8c4c4;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: "Poppins", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Cormorant Garamond", serif;
+}
+
+/* 3D transform styles */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+/* Rotation classes */
+.rotate-90 {
+  transform: rotate(90deg);
+}
+
+.rotate-180 {
+  transform: rotate(180deg);
+}
+
+.rotate-270 {
+  transform: rotate(270deg);
+}
+
+.rotate-15 {
+  transform: rotate(15deg);
+}
+
+.-rotate-15 {
+  transform: rotate(-15deg);
+}
+
+/* Animation classes - using will-change for better performance */
+.fade-in {
+  will-change: opacity;
+  animation: fadeIn 1s ease forwards;
+}
+
+.slide-up {
+  will-change: transform, opacity;
+  animation: slideUp 0.8s ease forwards;
+}
+
+.slide-in-right {
+  will-change: transform, opacity;
+  animation: slideInRight 0.8s ease forwards;
+}
+
+.slide-in-left {
+  will-change: transform, opacity;
+  animation: slideInLeft 0.8s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Add these animation classes to globals.css */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-shimmer {
+  will-change: background-position;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.8) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 3s infinite;
+}
+
+.btn-hover-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-hover-effect::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: 0.5s;
+}
+
+.btn-hover-effect:hover::after {
+  left: 100%;
+}
+
+/* Enhance button animations */
+button {
+  transition-property: transform, box-shadow, background-color, color, border-color;
+  transition-duration: 0.3s;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: 0 5px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+}
+
+/* Elegant scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--tertiary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .envelope-container {
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+  }
+}
+
+@media (max-width: 480px) {
+  .envelope-container {
+    transform: scale(0.8);
+    transition: transform 0.3s ease;
+  }
+
+  h1,
+  h2 {
+    font-size: 90%;
+  }
+
+  p {
+    font-size: 90%;
+  }
+
+  .content-section {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+}
+
+/* Timeline animations - optimized for performance */
+@keyframes drawLine {
+  from {
+    stroke-dashoffset: 1000;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(5deg);
+  }
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+}
+
+.animate-draw {
+  will-change: stroke-dashoffset;
+  animation: drawLine 2s forwards ease-in-out;
+}
+
+.animate-fade-slide {
+  will-change: opacity, transform;
+  animation: fadeSlideIn 0.8s forwards ease-out;
+}
+
+.animate-pulse-soft {
+  will-change: transform, opacity;
+  animation: pulse 3s infinite ease-in-out;
+}
+
+.animate-float {
+  will-change: transform;
+  animation: float 6s infinite ease-in-out;
+}
+
+/* Timeline responsive styles */
+@media (max-width: 768px) {
+  .timeline-item-left,
+  .timeline-item-right {
+    padding-left: 2rem;
+  }
+
+  .timeline-content {
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    text-align: left !important;
+  }
+
+  .connecting-line {
+    d: path("M50%,10 H60% Q70%,10 70%,25 V50%") !important;
+  }
+}
+
+/* Parallax effect classes - using hardware acceleration */
+.parallax-slow {
+  will-change: transform;
+  transition: transform 0.5s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.parallax-medium {
+  will-change: transform;
+  transition: transform 0.3s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.parallax-fast {
+  will-change: transform;
+  transition: transform 0.1s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+/* Enhanced hover effects */
+.hover-glow {
+  position: relative;
+  overflow: hidden;
+}
+
+.hover-glow::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 70%);
+  opacity: 0;
+  transform: scale(0.5);
+  transition: opacity 0.5s, transform 0.5s;
+}
+
+.hover-glow:hover::before {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Group hover animations for Tailwind */
+.group:hover .group-hover\:scale-110 {
+  transform: scale(1.1);
+}
+
+.group:hover .group-hover\:translate-y-1 {
+  transform: translateY(0.25rem);
+}
+
+.group:hover .group-hover\:opacity-100 {
+  opacity: 1;
+}
+
+.group:hover .group-hover\:mr-1 {
+  margin-right: 0.25rem;
+}
+
+/* Confetti animation */
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+.animate-confetti {
+  will-change: transform, opacity;
+  animation: confetti-fall 5s ease-in-out forwards;
+}
+
+/* Performance optimizations */
+.will-change-transform {
+  will-change: transform;
+}
+
+.will-change-opacity {
+  will-change: opacity;
+}
+
+.hardware-accelerated {
+  transform: translateZ(0);
+}
+
+/* SVG drawing animations */
+@keyframes drawSVG {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.draw-path {
+  animation: drawSVG 1.5s forwards ease-in-out;
+}
+
+/* Ensure decorative elements stay behind content */
+.decorative-element {
+  z-index: -1;
+}
+
+.content-element {
+  position: relative;
+  z-index: 1;
+}
+
+/* Ensure text is readable */
+.text-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* Ensure buttons are clickable */
+button,
+a {
+  position: relative;
+  z-index: 2;
+}
+
+/* Appear animations */
+@keyframes appearScale {
+  from {
+    opacity: 0;
+    transform: scale(0);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.appear-element {
+  animation: appearScale 0.5s 1s forwards ease-out;
+}
+
+/* Floating animations */
+@keyframes floatElement {
+  0% {
+    transform: translateY(0) rotate(0);
+  }
+  50% {
+    transform: translateY(-10px) rotate(5deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0);
+  }
+}
+
+.floating-element {
+  animation: floatElement 6s infinite ease-in-out;
+}
+
+/* Responsive gallery grid */
+@media (max-width: 640px) {
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .gallery-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 1025px) {
+  .gallery-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+/* Elegant decorations animations */
+@keyframes drawElement {
+  from {
+    stroke-dashoffset: 1000;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes floatPetal {
+  0% {
+    transform: translateY(0) rotate(0);
+  }
+  50% {
+    transform: translateY(-20px) rotate(10deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0);
+  }
+}
+
+.animate-draw-element {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: drawElement 2s forwards ease-in-out;
+}
+
+.animate-float-petal {
+  animation: floatPetal 8s infinite ease-in-out;
+}
+
+/* Responsive SVG animations */
+.responsive-svg {
+  max-width: 100%;
+  height: auto;
+  transition: all 0.3s ease;
+}
+
+/* Media queries for font sizes */
+@media (max-width: 640px) {
+  .text-4xl {
+    font-size: 1.75rem;
+  }
+
+  .text-3xl {
+    font-size: 1.5rem;
+  }
+
+  .text-2xl {
+    font-size: 1.25rem;
+  }
+
+  .text-xl {
+    font-size: 1.125rem;
+  }
+
+  .text-lg {
+    font-size: 1rem;
+  }
+
+  .text-base {
+    font-size: 0.9375rem;
+  }
+
+  .text-sm {
+    font-size: 0.875rem;
+  }
+}
+
+/* Ensure SVG animations scale properly on mobile */
+@media (max-width: 480px) {
+  svg {
+    vector-effect: non-scaling-stroke;
+  }
+
+  .svg-container {
+    transform-origin: center;
+    transition: transform 0.3s ease;
+  }
+}
+
+/* Smooth transitions for responsive elements */
+.responsive-element {
+  transition: all 0.3s ease-in-out;
+}
+
+/* Touch-friendly interactions */
+@media (max-width: 768px) {
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Añadir estas animaciones al final del archivo */
+
+@keyframes shine {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+.animate-shine {
+  animation: shine 1.5s ease-in-out;
+}
+
+/* Añadir estilos para perspectiva 3D */
+.transform-gpu {
+  transform: translateZ(0);
+  will-change: transform;
+}
